@@ -13,7 +13,8 @@ class Shift extends Model
       'hourStart',
       'hourEnd',
       'breakTime',
-      'hourSpec'
+      'hourSpec',
+      'week',
   ];
 
   public function companies()

@@ -11,12 +11,13 @@ class ShiftRepository extends ARepository implements IShiftRepository
 
     protected $model = Shift::class;
 
-  
+
 
     public function create(array $data):bool
     {
 
         $data['user_id'] = Auth()->user()->id;
+        $data['week'] = date("W", strtotime($data['date']));
         return (bool) $this->model->create($data);
     }
 
@@ -25,6 +26,7 @@ class ShiftRepository extends ARepository implements IShiftRepository
         $register = $this->find($id);
         if($register){
            $data['user_id'] = Auth()->user()->id;
+           $data['week'] = date("W", strtotime($data['date']));
            return (bool) $register->update($data);
         }else{
             return false;
