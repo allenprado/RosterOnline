@@ -24,6 +24,7 @@ class CreateShiftsTable extends Migration
             $table->time('hourEnd');
             $table->biginteger('hourSpec');
             $table->time('breakTime');
+            $table->biginteger('week');
             $table->timestamps();
         });
     }

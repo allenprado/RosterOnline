@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Consolidate extends Model
 {
-  protected $fillable = [
-      'user_id', 'week', 'company_id','q_hours','vl_salary'
-  ];
 
   public function companies()
   {

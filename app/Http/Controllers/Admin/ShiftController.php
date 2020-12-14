@@ -15,7 +15,7 @@ class ShiftController extends Controller
 
     private $route = 'shifts';
     private $paginate = 10;
-    private $search = ['id','date','hourStart','hourEnd','breakTime','hourSpec'];
+    private $search = ['id','date','hourStart','hourEnd','breakTime','hourSpec','week'];
     private $model;
 
     function __construct(IShiftRepository $model)
@@ -36,6 +36,7 @@ class ShiftController extends Controller
          $page = $this->model->transWord('shift_list');
          $columnList = ['id' => '#',
          'date' => $this->model->transWord('date'),
+         'week' => $this->model->transWord('week'),
          'company_id' => $this->model->transWord('company_id'),
          'hourStart' => $this->model->transWord('hourStart'),
          'hourEnd' => $this->model->transWord('hourEnd'),
@@ -43,6 +44,7 @@ class ShiftController extends Controller
          'total_day' => $this->model->transWord('total_day'),
          'total_money' => $this->model->transWord('total_money'),
          'hourSpec' => $this->model->transWord('hourSpec'),
+
        ];
          $search = "";
          $routeName = $this->route;
@@ -50,7 +52,7 @@ class ShiftController extends Controller
          if(isset($request->search))
          {
              $search = $request->search;
-             $list = $model->findWhereLike(['id','date'],$search,'id','DESC');
+             $list = $model->findWhereLike(['id','date','week'],$search,'id','DESC');
          }else{
              $list = $model->paginate($this->paginate, 'id', 'DESC');
          }
